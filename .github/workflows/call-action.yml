@@ -1,0 +1,23 @@
+name: call github action 
+
+on: 
+    workflow_dispatch:
+        inputs:
+            who-to-greet:
+                description: who to greet message
+                required: true
+                default: "welcome to the git"
+                type: string
+
+
+jobs:
+    say-hello:
+        name: say hello
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: print message
+              id: print-to-message
+              uses: actions/hello-world-javascript-action@main
+              with:
+                who-to-greet: ${{ inputs.who-to-greet}}
